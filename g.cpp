@@ -8,13 +8,13 @@ void Drawcreelo(int x, int y, int wing_rise, int sizeX, int sizeY);
 void Drawglaz(int x, int y, int sizeX, int sizeY);
 void Drawclyv(int x, int y, int sizeX, int sizeY);
 void Drawstvol(int x, int y);
-void Drawkrest(int x, int y);
+void Drawkrest(int txMouseX, int txMouseY);
 
 int main()
 {
 
 
-     txCreateWindow       (800,600);
+     txCreateWindow (800, 600);
 
      DrawLanscape();
 
@@ -166,32 +166,36 @@ void Drawclyv(int x, int y, int sizeX, int sizeY)
 
 
 //     txSetFillColor       (RGB (89, 89, 112));
-//     txSetColor           (RGB (89, 89, 112));
-//     txRectangle          (x-380+380, y-560+530, x-380+455, y-560+550);
+// txSetColor (RGB (89, 89, 112));
+// txRectangle (x-380+380, y-560+530, x-380+455, y-560+550);
 
-//     txSetFillColor       (RGB (89, 89, 112));
-//     txSetColor           (RGB (89, 89, 112));
-//     txCircle             (x-380+400,y, 20);
+// txSetFillColor (RGB (89, 89, 112));
+// txSetColor (RGB (89, 89, 112));
+// txCircle (x-380+400,y, 20);
 
 //}
 
-void Drawkrest(int x, int y)
+void Drawkrest(int txMouseX, int txMouseY)
 {
 
-     txSetFillColor       (RGB (89, 89, 112));
-     txSetColor           (RGB (89, 89, 112));
-     txRectangle          (x-380+400, y-560+440, x-380+410, y-560+510);
+     txSetFillColor (RGB (89, 89, 112));
+     txSetColor (RGB (89, 89, 112));
+     txRectangle (txMouseX-380+400, txMouseY-560+440, txMouseX-380+410, txMouseY-560+510);
 
-     txSetFillColor       (RGB (89, 89, 112));
-     txSetColor           (RGB (89, 89, 112));
-     txRectangle          (x-380+370, y-560+470, x-380+440, y-560+480);
+     txSetFillColor (RGB (89, 89, 112));
+     txSetColor (RGB (89, 89, 112));
+     txRectangle (txMouseX-380+370, txMouseY-560+470, txMouseX-380+440, txMouseY-560+480);
 
-     txSetFillColor       (RGB (109, 109, 112));
-     txSetColor           (RGB (109, 109, 112));
-     txCircle             (x-380+405,y-560+475, 10);
-
-
+     txSetFillColor (RGB (109, 109, 112));
+     txSetColor (RGB (109, 109, 112));
+     txCircle (txMouseX-380+405,txMouseY-560+475, 10);
 
 
+
+while (txMouseButtons() != 1)
+              {
+              txCircle (txMouseX(), txMouseY(), 20);
+              txSleep (0);
+              }
 
 }
