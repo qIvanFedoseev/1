@@ -81,9 +81,7 @@ int main()
 
          krest.x= txMouseX();
          krest.y= txMouseY();
-
-         ptica1.y=ptica1.fly;
-
+         
          
 
          DrawLanscape();
