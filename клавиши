@@ -1,0 +1,45 @@
+  #include "TXlib.h"
+  void PlayBall();
+
+          int main()
+              {
+              txCreateWindow (800, 600);
+
+              PlayBall();
+              }
+
+          void PlayBall()
+              {
+              int x  = 100, y  = 100;
+              int vx = 5,   vy = 7;
+              int ax = 0,   ay = 1;
+              int dt = 1;
+
+              txSetColor     (TX_LIGHTGREEN);
+              txSetFillColor (TX_GREEN);
+
+              while (!txGetAsyncKeyState (VK_ESCAPE))  // Погуглите любой код VK_...,
+                  {                                    // и найдете их все
+                  txCircle (x, y, 20);
+
+                  vx += ax * dt;                       // First velocity, then position: this gives more precision
+                  vy += ay * dt;                       // See: http://en.wikipedia.org/wiki/Backward_Euler_method
+
+                   x += vx * dt;
+                   y += vy * dt;
+
+                  if (x > 800) { vx = -vx; x = 800; }  // = 800 is not the precise solution. Can you make it better?
+                  if (x <   0) { vx = -vx; x =   0; }
+                  if (y > 600) { vy = -vy; y = 600; }
+                  if (y <   0) { vy = -vy; y =   0; }
+
+                  if (txGetAsyncKeyState (VK_LEFT))  vx--;
+                  if (txGetAsyncKeyState (VK_RIGHT)) vx++;
+                  if (txGetAsyncKeyState (VK_UP))    vy--;
+                  if (txGetAsyncKeyState (VK_DOWN))  vy++;
+                  if (txGetAsyncKeyState (VK_SPACE)) vx = vy = 0;
+                  if (txGetAsyncKeyState ('M'))      printf ("Meow ");
+
+                  txSleep (20);
+                  }
+              }
