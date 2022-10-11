@@ -8,25 +8,46 @@ int sizeX=txGetExtentX(map)/4;
 int sizeY=txGetExtentY(map)/4;
 
 
-
+int x  = 100;
 int nanim=0;
-int t=1;
+int t=1 , y  = 100;
+              int vx = 5,   vy = 7;
+              int ax = 0,   ay = 1;
+              int dt = 1;
 
-while(!txGetAsyncKeyState(VK_ESCAPE))
-{
-  txSetFillColor(RGB(128,255,255));
+              while (!txGetAsyncKeyState (VK_ESCAPE))
+                  {
+                   txSetFillColor(RGB(128,255,255));
   txRectangle(0,0,800,600);
 
-//txBitBlt(txDC(),0,0,0,0,map,0,0);
-txTransparentBlt	(txDC(),0,0,sizeX,sizeY,map,0*sizeX,(t%4)*sizeY,RGB(255,0,255));
-txTransparentBlt	(txDC(),sizeX,sizeY,sizeX,sizeY,map,1*sizeX,(t%4)*sizeY,RGB(255,0,255));
+  //txBitBlt(txDC(),0,0,0,0,map,0,0);
+  txTransparentBlt	(txDC(),0,0,sizeX,sizeY,map,0*sizeX,(t%4)*sizeY,RGB(255,0,255));
+  txTransparentBlt	(txDC(),sizeX,sizeY,sizeX,sizeY,map,1*sizeX,(t%4)*sizeY,RGB(255,0,255));;
+
+                  vx += ax * dt;
+                  vy += ay * dt;
+
+                   x += vx * dt;
+                   y += vy * dt;
+
+                  if (x > 800) { vx = -vx; x = 800; }
+                  if (x <   0) { vx = -vx; x =   0; }
+                  if (y > 600) { vy = -vy; y = 600; }
+                  if (y <   0) { vy = -vy; y =   0; }
+
+                  if (txGetAsyncKeyState (VK_LEFT))  vx--;
+                  if (txGetAsyncKeyState (VK_RIGHT)) vx++;
+                  }
+
 
 t++;
 txSleep(100);
 
-}
 
 txDeleteDC (map);
 
 return(0);
+
 }
+
+
