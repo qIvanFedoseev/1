@@ -18,17 +18,17 @@
               txSetColor     (TX_LIGHTGREEN);
               txSetFillColor (TX_GREEN);
 
-              while (!txGetAsyncKeyState (VK_ESCAPE))  // Погуглите любой код VK_...,
-                  {                                    // и найдете их все
+              while (!txGetAsyncKeyState (VK_ESCAPE))  
+                  {                                    
                   txCircle (x, y, 20);
 
-                  vx += ax * dt;                       // First velocity, then position: this gives more precision
-                  vy += ay * dt;                       // See: http://en.wikipedia.org/wiki/Backward_Euler_method
+                  vx += ax * dt;                       
+                  vy += ay * dt;                      
 
                    x += vx * dt;
                    y += vy * dt;
 
-                  if (x > 800) { vx = -vx; x = 800; }  // = 800 is not the precise solution. Can you make it better?
+                  if (x > 800) { vx = -vx; x = 800; } 
                   if (x <   0) { vx = -vx; x =   0; }
                   if (y > 600) { vy = -vy; y = 600; }
                   if (y <   0) { vy = -vy; y =   0; }
@@ -38,7 +38,7 @@
                   if (txGetAsyncKeyState (VK_UP))    vy--;
                   if (txGetAsyncKeyState (VK_DOWN))  vy++;
                   if (txGetAsyncKeyState (VK_SPACE)) vx = vy = 0;
-                  if (txGetAsyncKeyState ('M'))      printf ("Meow ");
+            
 
                   txSleep (20);
                   }
