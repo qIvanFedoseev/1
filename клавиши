@@ -15,9 +15,7 @@
               int ax = 0,   ay = 1;
               int dt = 1;
 
-              txSetColor     (TX_LIGHTGREEN);
-              txSetFillColor (TX_GREEN);
-
+            
               while (!txGetAsyncKeyState (VK_ESCAPE))  
                   {                                    
                   txCircle (x, y, 20);
