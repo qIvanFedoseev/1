@@ -1,0 +1,144 @@
+
+#include "TXlib.h"
+struct mama
+{
+int x;
+int y;
+};
+ struct doll
+{
+int x;
+int y;
+int vx;
+int vy;
+int ax;
+int ay;
+int dt;
+};
+
+
+
+
+
+
+
+
+
+
+
+  void fon();
+  void PlayBall(doll boll);
+  void DrawLanscape(mama mapa);
+          int main()
+              {
+               mama mapa;
+               doll boll;
+
+
+              txCreateWindow (800, 600);
+
+mapa.x = 0;
+mapa.y = 0;
+boll.x  = 50;
+boll.y  = 500;
+boll.vx = 1;
+boll.vy = 1;
+boll.ax = 1;
+boll.ay = 1;
+boll.dt = 1;
+
+              fon();
+              DrawLanscape(mapa);
+              PlayBall(boll);
+ while (!txGetAsyncKeyState (VK_ESCAPE))
+
+              {
+                  txClear();
+
+
+              fon();
+              DrawLanscape(mapa);
+              PlayBall(boll);
+
+if ((boll.y = mapa.y) && (boll.x = mapa.x))     {boll.y = 500; boll.x=50;}
+
+  txSleep (1);
+              }
+              }
+              fon();
+              DrawLanscape(mapa);
+              PlayBall(boll);
+
+
+          void PlayBall(doll boll)
+              {
+
+
+
+//boll.x  = 50;
+//boll.y  = 500;
+//boll.vx = 1;
+//boll.vy = 1;
+//boll.ax = 1;
+//boll.ay = 1;
+//boll.dt = 1;
+
+
+              while (!txGetAsyncKeyState (VK_ESCAPE))
+                  {
+                  txClear();
+
+                  txSetColor           (RGB (0, 1, 0));
+                  txSetFillColor       (RGB (0, 1, 0));
+                  txCircle (boll.x, boll.y, 20);
+
+
+                  boll.vx += boll.ax * (boll.dt/4);
+                  boll.vy += boll.ay * (boll.dt/4);
+
+                   boll.x += boll.vx * boll.dt;
+                   boll.y += boll.vy * boll.dt;
+
+                  if (boll.x > 800) { boll.vx = -boll.vx; boll.x = 800; }
+                  if (boll.x <   0) { boll.vx = -boll.vx; boll.x =   0; }
+                  if (boll.y > 600) { boll.vy = -boll.vy; boll.y = 600; }
+                  if (boll.y <   0) { boll.vy = -boll.vy; boll.y =   0; }
+
+                  //if (boll.y > 549)                              {boll.y = 500; boll.x=50;}
+                  //if ((boll.y = mapa.y) && (boll.x = mapa.x))     {boll.y = 500; boll.x=50;}
+
+
+
+                  if (txGetAsyncKeyState (VK_LEFT))  boll.vx--;
+                  if (txGetAsyncKeyState (VK_RIGHT)) boll.vx++;
+                  if (txGetAsyncKeyState (VK_UP))    boll.vy--;
+                  if (txGetAsyncKeyState (VK_DOWN))  boll.vy++;
+                  if (txGetAsyncKeyState (VK_SPACE)) boll.vx = boll.vy = 0;
+
+
+
+                  txSleep (20);
+                  }
+
+              }
+void DrawLanscape(mama mapa)
+{
+
+
+//mapa.x = 0;
+//mapa.y = 0;
+
+     txSetColor           (RGB (0, 0, 220));
+     txSetFillColor       (RGB (0, 0, 220));
+     txRectangle          (mapa.x,mapa.y + 550, mapa.x + 800,mapa.y + 600);
+     txRectangle          (mapa.x,mapa.y + 450, mapa.x + 600,mapa.y + 400);
+     txRectangle          (mapa.x + 200,mapa.y + 250, mapa.x + 800,mapa.y + 300);
+}
+
+void fon()
+{
+
+     txSetFillColor       (RGB (80, 80, 128));
+    // txSetColor           (RGB (80, 80, 128));
+     txRectangle          (0, 0, 800, 600);
+}
